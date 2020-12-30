@@ -8,14 +8,17 @@ public class Item {
 
     public int quality;
 
-    public Item(String name, int sellIn, int quality) {
+    public String lastUpdate;
+
+    public Item(String name, int sellIn, int quality,String lastUpdate) {
         this.name = name;
         this.sellIn = sellIn;
         this.quality = quality;
+        this.lastUpdate = lastUpdate;
     }
 
    @Override
    public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality;
+        return this.name + ", " + this.sellIn + ", " + this.quality+ ", " +this.lastUpdate ;
     }
 }
