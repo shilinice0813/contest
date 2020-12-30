@@ -61,11 +61,29 @@ public class GildedRoseTest {
     //2.1 AgedBrie商品质量每天增加1
     @Test
     public void Given_AgedBrie_When_Quality_Then_EveryDayMore1() throws ParseException {
-
+        //初始化商品名称，销售期，品质和上架日期
+        Item item=new Item("Aged Brie",20,10,"20201201");
+        items[0]=item;
+        GildedRose gildedRose=new GildedRose(items);
+        //设置当前日期为下一天
+        MyDate.setCurrentDate("20201202");
+        gildedRose.updateQuality();
+        Assert.assertEquals(20,item.sellIn);
+        Assert.assertEquals(11,item.quality);
+        Assert.assertEquals("20201202",item.lastUpdate);
     }
     //2.2 AgedBrie商品质量不超过50
     @Test
     public void Given_AgedBrie_When_Quality_Then_NoMore50() throws ParseException{
-
+        //初始化商品名称，销售期，品质和上架日期
+        Item item=new Item("Aged Brie",0,50,"20201201");
+        items[0]=item;
+        GildedRose gildedRose=new GildedRose(items);
+        //设置当前日期为下一天
+        MyDate.setCurrentDate("20201202");
+        gildedRose.updateQuality();
+        Assert.assertEquals(0,item.sellIn);
+        Assert.assertEquals(50,item.quality);
+        Assert.assertEquals("20201202",item.lastUpdate);
     }
 }

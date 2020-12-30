@@ -14,7 +14,10 @@ class GildedRose {
             if (null==item){
                 continue;
             }
-            if(MyDate.plusDay(1,item.lastUpdate).equals(MyDate.getCurrentDate())){
+            if(item.name.equals("Aged Brie")&&MyDate.plusDay(1,item.lastUpdate).equals(MyDate.getCurrentDate())){
+                item.quality=item.quality<=49?item.quality+1:50;
+                item.lastUpdate=MyDate.getCurrentDate();
+            }else if(MyDate.plusDay(1,item.lastUpdate).equals(MyDate.getCurrentDate())){
                 if(item.sellIn>0){
                     item.sellIn--;
                     item.quality = item.quality>=1?item.quality-1:0;
