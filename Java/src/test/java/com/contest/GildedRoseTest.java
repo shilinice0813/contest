@@ -86,4 +86,18 @@ public class GildedRoseTest {
         Assert.assertEquals(50,item.quality);
         Assert.assertEquals("20201202",item.lastUpdate);
     }
+    //3.1 Sulfuras产品质量不会随时间改变
+    @Test
+    public void Given_Sulfuras_When_DateChange_Then_SellInAndQualitySame() throws ParseException{
+        //初始化商品名称，销售期，品质和上架日期
+        Item item=new Item("Sulfuras",5,50,"20201201");
+        items[0]=item;
+        GildedRose gildedRose=new GildedRose(items);
+        //设置当前日期为下一天
+        MyDate.setCurrentDate("20201202");
+        gildedRose.updateQuality();
+        Assert.assertEquals(5,item.sellIn);
+        Assert.assertEquals(50,item.quality);
+        Assert.assertEquals("20201202",item.lastUpdate);
+    }
 }
