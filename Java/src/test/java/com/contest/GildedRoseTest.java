@@ -58,5 +58,14 @@ public class GildedRoseTest {
         Assert.assertEquals(0,item.quality);
         Assert.assertEquals("20201202",item.lastUpdate);
     }
+    //2.1 AgedBrie商品质量每天增加1
+    @Test
+    public void Given_AgedBrie_When_Quality_Then_EveryDayMore1() throws ParseException {
 
+    }
+    //2.2 AgedBrie商品质量不超过50
+    @Test
+    public void Given_AgedBrie_When_Quality_Then_NoMore50() throws ParseException{
+
+    }
 }
