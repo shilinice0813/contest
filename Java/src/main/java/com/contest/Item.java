@@ -10,6 +10,8 @@ public class Item {
 
     public String lastUpdate;
 
+    public String displayDate;
+
     public Item(String name, int sellIn, int quality,String lastUpdate) {
         this.name = name;
         this.sellIn = sellIn;

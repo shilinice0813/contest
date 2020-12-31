@@ -100,4 +100,64 @@ public class GildedRoseTest {
         Assert.assertEquals(50,item.quality);
         Assert.assertEquals("20201202",item.lastUpdate);
     }
+    //4.1 Backstage passes离演出开始前10天，每天加1
+    @Test
+    public void Given_BackstagePasses_When_10DaysBefore_Then_QualitySameAdd1() throws ParseException{
+        //初始化商品名称，销售期，品质和上架日期
+        Item item=new Item("Backstage passes",5,5,"20201201");
+        item.displayDate="20201215";
+        items[0]=item;
+        GildedRose gildedRose=new GildedRose(items);
+        //设置当前日期为下一天
+        MyDate.setCurrentDate("20201202");
+        gildedRose.updateQuality();
+        Assert.assertEquals(5,item.sellIn);
+        Assert.assertEquals(6,item.quality);
+        Assert.assertEquals("20201202",item.lastUpdate);
+    }
+    //4.2 Backstage passes离演出开始10-5天，每天加2
+    @Test
+    public void Given_BackstagePasses_When_10To5DaysBefore_Then_QualitySameAdd2() throws ParseException{
+        //初始化商品名称，销售期，品质和上架日期
+        Item item=new Item("Backstage passes",5,5,"20201201");
+        item.displayDate="20201208";
+        items[0]=item;
+        GildedRose gildedRose=new GildedRose(items);
+        //设置当前日期为下一天
+        MyDate.setCurrentDate("20201202");
+        gildedRose.updateQuality();
+        Assert.assertEquals(5,item.sellIn);
+        Assert.assertEquals(7,item.quality);
+        Assert.assertEquals("20201202",item.lastUpdate);
+    }
+    //4.3 Backstage passes离演出开始不足5天，每天加3
+    @Test
+    public void Given_BackstagePasses_When_5To0DaysBefore_Then_QualitySameAdd3() throws ParseException{
+        //初始化商品名称，销售期，品质和上架日期
+        Item item=new Item("Backstage passes",5,5,"20201201");
+        item.displayDate="20201204";
+        items[0]=item;
+        GildedRose gildedRose=new GildedRose(items);
+        //设置当前日期为下一天
+        MyDate.setCurrentDate("20201202");
+        gildedRose.updateQuality();
+        Assert.assertEquals(5,item.sellIn);
+        Assert.assertEquals(8,item.quality);
+        Assert.assertEquals("20201202",item.lastUpdate);
+    }
+    //4.4 Backstage passes演出结束，质量归0
+    @Test
+    public void Given_BackstagePasses_When_After_Then_Quality0() throws ParseException{
+        //初始化商品名称，销售期，品质和上架日期
+        Item item=new Item("Backstage passes",5,50,"20201201");
+        item.displayDate="20201130";
+        items[0]=item;
+        GildedRose gildedRose=new GildedRose(items);
+        //设置当前日期为下一天
+        MyDate.setCurrentDate("20201202");
+        gildedRose.updateQuality();
+        Assert.assertEquals(5,item.sellIn);
+        Assert.assertEquals(0,item.quality);
+        Assert.assertEquals("20201202",item.lastUpdate);
+    }
 }
