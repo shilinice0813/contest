@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * @author Leon
+ */
 public class MyDate {
     private static String currentDate;
 
